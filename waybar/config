@@ -1,0 +1,42 @@
+{
+    //General config
+    "layer": "top", 
+    "position": "top", 
+    "margin-top": 14,
+    "margin-bottom": -5,
+    "margin-right": 10,
+    "height": 35, 
+    "spacing": 4, 
+    "fixed-center": true,
+
+    //Modules including
+    "include": ["~/.config/waybar/modules"],
+
+    //Modules positions
+    "modules-left": [
+        "custom/appmenu",
+        "wlr/taskbar",
+        "custom/media",
+        "hyprland/workspaces",
+        "cpu", 
+        "memory"
+    ],
+
+    "modules-center": [
+        "hyprland/window",
+        "clock"
+    ],
+
+    "modules-right": [
+        "idle_inhibitor", 
+        "pulseaudio", 
+        "network", 
+        "backlight", 
+        "keyboard-state", 
+        "sway/language", 
+        "battery", 
+        "tray",
+        "custom/exit",
+        "battery#bat2"
+    ],
+}
