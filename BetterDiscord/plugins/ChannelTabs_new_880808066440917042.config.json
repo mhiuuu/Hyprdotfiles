@@ -1,0 +1,43 @@
+{
+    "settings": {
+        "tabs": [
+            {
+                "name": "#spam-chửi-phốt",
+                "url": "/channels/837599484116336650/837599484116336659",
+                "selected": true,
+                "currentStatus": "none",
+                "iconUrl": "https://cdn.discordapp.com/icons/837599484116336650/2fa46a57610d13092276a265cdadc2a5.webp?size=40",
+                "channelId": "837599484116336659"
+            }
+        ],
+        "favs": [],
+        "favGroups": [],
+        "showTabBar": true,
+        "showFavBar": true,
+        "reopenLastChannel": false,
+        "showFavUnreadBadges": true,
+        "showFavMentionBadges": true,
+        "showFavTypingBadge": true,
+        "showEmptyFavBadges": false,
+        "showTabUnreadBadges": true,
+        "showTabMentionBadges": true,
+        "showTabTypingBadge": true,
+        "showEmptyTabBadges": false,
+        "showActiveTabUnreadBadges": false,
+        "showActiveTabMentionBadges": false,
+        "showActiveTabTypingBadge": false,
+        "showEmptyActiveTabBadges": false,
+        "compactStyle": false,
+        "privacyMode": false,
+        "radialStatusMode": false,
+        "tabWidthMin": 100,
+        "showFavGroupUnreadBadges": true,
+        "showFavGroupMentionBadges": true,
+        "showFavGroupTypingBadge": true,
+        "showEmptyFavGroupBadges": false,
+        "showQuickSettings": true,
+        "showNavButtons": true,
+        "alwaysFocusNewTabs": false,
+        "useStandardNav": true
+    }
+}

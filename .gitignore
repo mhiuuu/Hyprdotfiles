@@ -27,5 +27,12 @@ QtProject.conf
 VirtualBox/
 arduino-ide/
 mimeapps.list
-notion-app/
-
+grammarly-languageserver/
+sublime-text/
+yay/
+kiorc
+menus/
+google-chrome-for-testing/
+configstore/
+notion-app-enhanced/
+notion-nativefier-46aee8/
