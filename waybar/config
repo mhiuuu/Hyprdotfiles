@@ -1,0 +1,47 @@
+{
+    "height": 15,
+    "spacing": 20,
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/window",
+        "custom/texttwo",
+        "custom/textthree",
+        "custom/textfour",
+        "custom/textfive",
+        "custom/spotify"
+    ],
+    "modules-center": [
+        "hyprland/workspaces"
+    ],
+    "modules-right": [
+        "pulseaudio",
+        "network",
+        "cpu",
+        "memory",
+        "backlight",
+        "battery",
+        "tray",
+        "clock",
+        "pulseaudio/slider"
+    ],
+    "hyprland/workspaces": {
+        "on-scroll-up": "hyprctl dispatch workspace r-1",
+        "on-scroll-down": "hyprctl dispatch workspace r+1",
+        "on-click": "activate",
+        "active-only": false,
+        "all-outputs": true,
+        "format": "{}",
+        "format-icons": {
+            "urgent": "",
+            "active": "",
+            "default": ""
+        },
+        "persistent-workspaces": {
+            "*": 7
+        }
+    },
+    "include": [
+        "~/.config/waybar/modules/left_modules.json",
+        "~/.config/waybar/modules/right_modules.json"
+    ]
+}
