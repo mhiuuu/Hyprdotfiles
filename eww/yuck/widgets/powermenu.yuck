@@ -1,0 +1,9 @@
+(defwidget powermenu [] 
+    (box :class "button-bin powermenu" 
+        (button
+            :class "button powermenu"
+            :onclick "${EWW_CONFIG_DIR}/scripts/launcher toggle_menu powermenu"
+            (label :class "icon" :text "")
+        )
+    )
+)

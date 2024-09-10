@@ -31,9 +31,12 @@
         "format-icons": ["", "", "", "", ""]
     },
     "network": {
-        "format-wifi": "{signalStrength}% {icon}",
-        "format-alt": "{essid}",
-        "format-disconnected": "0% {icon}",
+        "format-wifi": "({signalStrength}%) ",
+        "format-ethernet": "",
+        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-linked": "{ifname} (No IP) ",
+        "format-disconnected": "⚠",
+        "format-alt": "{ifname}: {ipaddr}/{cidr}",
         "format-icons": {
             "wifi": [""],
             "ethernet": ["󰈁"],
@@ -59,15 +62,32 @@
         },
         "on-click": "pavucontrol"
     },
-    "backlight/slider": {
-        "min": 0,
-        "max": 100,
-        "orientation": "horizontal",
-        "device": "intel_backlight"
-    },
     "pulseaudio/slider": {
         "min": 0,
         "max": 100,
         "orientation": "horizontal"
+    },
+    "custom/media": {
+        "format": "{icon} {}",
+        "return-type": "json",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": "",
+            "default": "🎜"
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/mediaplayer.py 2> /dev/null"
+    },
+    "custom/power": {
+        "format": "⏻ ",
+        "tooltip": false,
+        "menu": "on-click",
+        "menu-file": "$HOME/.config/waybar/power_menu.xml",
+        "menu-actions": {
+            "shutdown": "shutdown",
+            "reboot": "reboot",
+            "suspend": "systemctl suspend",
+            "hibernate": "systemctl hibernate"
+        }
     }
 }

@@ -1,29 +1,10 @@
 {
-    "height": 15,
+    "height": 20,
     "spacing": 20,
-    "modules-left": [
-        "custom/launcher",
-        "hyprland/window",
-        "custom/texttwo",
-        "custom/textthree",
-        "custom/textfour",
-        "custom/textfive",
-        "custom/spotify"
-    ],
-    "modules-center": [
-        "hyprland/workspaces"
-    ],
-    "modules-right": [
-        "pulseaudio",
-        "network",
-        "cpu",
-        "memory",
-        "backlight",
-        "battery",
-        "tray",
-        "clock",
-        "pulseaudio/slider"
-    ],
+    "modules-left": ["custom/launcher", "hyprland/window", "custom/texttwo", "custom/textthree", "custom/textfour", "custom/textfive", "custom/spotify"],
+    "modules-center": ["hyprland/workspaces"],
+    "modules-right": ["pulseaudio", "network", "cpu", "memory", "backlight", "battery", "tray", "clock", "pulseaudio/slider"],
+    "include": ["~/.config/waybar/modules/left_modules.json", "~/.config/waybar/modules/right_modules.json"],
     "hyprland/workspaces": {
         "on-scroll-up": "hyprctl dispatch workspace r-1",
         "on-scroll-down": "hyprctl dispatch workspace r+1",
@@ -37,11 +18,7 @@
             "default": ""
         },
         "persistent-workspaces": {
-            "*": 7
+            "*": 5
         }
-    },
-    "include": [
-        "~/.config/waybar/modules/left_modules.json",
-        "~/.config/waybar/modules/right_modules.json"
-    ]
+    }
 }

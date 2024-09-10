@@ -1,0 +1,95 @@
+(defwidget controls_slider [control reveal value onchange icon orientation transition] 
+    (eventbox
+        :onscroll "${EWW_CONFIG_DIR}/scripts/${control} {}"
+        :onhover "${EWW_CMD} update ${control}_reveal=true"
+        :onhoverlost "${EWW_CMD} update ${control}_reveal=false"
+        (box
+            :space-evenly false
+            :orientation orientation
+            (revealer
+                :transition transition
+                :duration "300ms"
+                :reveal reveal
+                :class "reveal"
+                (eventbox :class "slider ${orientation}" (scale
+                    :orientation orientation
+                    :flipped {orientation == "v"}
+                    :value value
+                    :onchange onchange)))
+            (label
+                :class "${control} icon"
+                :text icon)
+        )
+    )
+)
+
+(defwidget controls_icon [control reveal value icon style angle orientation transition visible] 
+    (eventbox
+        :visible visible
+        :onhover "${EWW_CMD} update ${control}_reveal=true"
+        :onhoverlost "${EWW_CMD} update ${control}_reveal=false"
+        (box
+            :space-evenly false
+            :orientation orientation
+            (revealer
+                :transition transition
+                :duration "300ms"
+                :reveal reveal
+                :class "reveal"
+                (label
+                    :class "${style} ${control}"
+                    :angle angle
+                    :text value)
+            )
+            (label
+                :class "${style} ${control} icon"
+                :text icon)
+        )
+    )
+)
+
+(defvar bluetooth_reveal false)
+(defvar bt_speaker_reveal false)
+(defvar mute_reveal false)
+(defvar notifications_reveal false)
+(defvar battery_reveal false)
+(defvar network_reveal false)
+(defvar volume_reveal false)
+(defvar screen_reveal false)
+
+(defwidget panel_controls [orientation] 
+    (box
+        :class "controls"
+        :orientation orientation
+        :space-evenly false
+        (controls_slider
+            :orientation orientation
+            :transition {orientation == "v" ? "slideup" : "slideleft"}
+            :control "volume"
+            :reveal volume_reveal
+            :value {volume.level}
+            :onchange "${EWW_CONFIG_DIR}/scripts/volume set {}"
+            :icon {volume.icon})
+        (controls_slider
+            :orientation orientation
+            :transition {orientation == "v" ? "slideup" : "slideleft"}
+            :control "screen"
+            :reveal screen_reveal
+            :value {brightness.screen.level}
+            :onchange "${EWW_CONFIG_DIR}/scripts/brightness set_screen {}"
+            :icon {brightness.screen.icon})
+    )
+)
+
+(defwidget panel_system_indicators [orientation] 
+    (box :class "button-bin"
+        (eventbox
+            :onclick "${EWW_CONFIG_DIR}/scripts/launcher toggle_menu quicksettings"
+            :class "button system-indicators"
+            (panel_controls :orientation orientation)
+        )
+    )
+)
+
+
+

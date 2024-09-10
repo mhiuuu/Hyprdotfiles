@@ -1,0 +1,10 @@
+(defwidget window [angle] 
+    (box :class "button-bin"
+        (button :class "button window" 
+            (label
+                :visible {window != "null" ? true : false}
+                :text {window}
+                :angle angle)
+        )
+    )
+)

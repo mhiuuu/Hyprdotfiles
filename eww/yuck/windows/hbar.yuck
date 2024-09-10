@@ -1,0 +1,24 @@
+(defwidget hbar [] 
+    (centerbox
+        :class "hpanel ${workspaces.active_empty ? "floating" : ""}"
+        (box
+            :class "leftBar"
+            :space-evenly false
+            (launcher)
+            (panel_clock)
+            (panel_workspaces :orientation "h")
+            (window :angle 0)
+        )
+        (box
+            :class "centerBar"
+        )
+        (box
+            :class "righBar"
+            :space-evenly false
+            :halign "end"
+            (colorpicker)
+            (panel_system_indicators :orientation "h")
+            (powermenu)
+        )
+    )
+)

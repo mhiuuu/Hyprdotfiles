@@ -1,0 +1,9 @@
+(defwidget colorpicker [] 
+    (box :class "button-bin"
+        (button
+            :class "button colorpicker"
+            :onclick "hyprpicker"
+            (label :class "icon" :text "󰈊")
+        )
+    )
+)

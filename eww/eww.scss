@@ -1,0 +1,10 @@
+@import "./scss/colors.scss";
+@import "./scss/variables.scss";
+@import "./scss/common.scss";
+
+@import "./scss/widgets/bar_widget.scss";
+
+@import "./scss/windows/hbar.scss";
+tooltip {
+    @include tooltip;
+}
