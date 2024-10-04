@@ -1,0 +1,65 @@
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#pulseaudio,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#clock,
+#battery {
+    padding: 0 10px;
+    color: #ffffff;
+}
+@keyframes blink {
+    to {
+        color: #000000;
+    }
+}
+#network.disconnected {
+    color: #f53c3c;
+    animation: blink;
+    animation-duration: 1s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+#battery.critical:not(.charging) {
+    color: #f53c3c;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+label:focus {
+    background-color: #000000;
+}
+#pulseaudio-slider slider,
+#backlight-slider slider {
+    min-height: 0px;
+    min-width: 0px;
+    background-image: none;
+    opacity: 1;
+    border: 1px;
+    box-shadow: none;
+}
+#pulseaudio-slider trough,
+#backlight-slider trough {
+    min-height: 10px;
+    min-width: 50px;
+    border-radius: 5px;
+    background-color: rgba(146, 146, 146, 0.7);
+}
+#pulseaudio-slider highlight,
+#backlight-slider highlight {
+    min-height: 10px;
+    min-width: 0px;
+    border-radius: 5px;
+    background-color: white;
+}

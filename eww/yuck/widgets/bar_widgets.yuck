@@ -1,0 +1,55 @@
+(defwidget controls_slider [control reveal value onchange icon orientation] 
+    (eventbox
+        :onscroll "${EWW_CONFIG_DIR}/scripts/${control} {}"
+        (box
+            :space-evenly false
+            :orientation orientation
+            (eventbox :class "slider ${orientation}" (scale
+                :orientation "h"
+                :flipped {orientation == "v"}
+                :value value
+                :onchange onchange))
+            (label
+                :class "${control} icon"
+                :text icon)
+        )
+    )
+)
+
+(defvar volume_reveal false)
+(defvar screen_reveal false)
+
+(defwidget panel_controls [] 
+    (box
+        :class "controls"
+        :orientation "v"
+        :space-evenly false
+        (controls_slider
+            :orientation "h"
+            :control "volume"
+            :reveal volume_reveal
+            :value {volume.level}
+            :onchange "${EWW_CONFIG_DIR}/scripts/volume set {}"
+            :icon {volume.icon})
+        (controls_slider
+            :orientation "h"
+            :control "screen"
+            :reveal screen_reveal
+            :value {brightness.screen.level}
+            :onchange "${EWW_CONFIG_DIR}/scripts/brightness set_screen {}"
+            :icon {brightness.screen.icon})
+    )
+)
+
+(defwidget panel_system_indicators [orientation] 
+    (box :class "button-bin"
+        (eventbox
+            :onclick "${EWW_CONFIG_DIR}/scripts/launcher toggle_menu quicksettings"
+            :class "button system-indicators"
+            (panel_controls)
+        )
+    )
+)
+
+
+

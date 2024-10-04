@@ -1,0 +1,58 @@
+(deflisten  window      `scripts/hyprland window`)
+(deflisten  workspaces  `scripts/hyprland workspaces`)
+(deflisten music :initial "" "playerctl --follow metadata --format '{{ artist }} - {{ title }}' || true")
+
+(defpoll    volume      :interval "3s" :initial "{}" `scripts/volume get`)
+(defpoll    brightness  :interval "3s" :initial "{}" `scripts/brightness get`)
+
+(defpoll    panel_clock :interval "5s" `date "+%H:%M  |  %b. %d. %A"`)
+(defpoll    hour        :interval "5s" `date "+%H"`)
+(defpoll    minutes     :interval "5s" `date "+%M"`)
+(defpoll    date        :interval "5s" `date "+%b. %d. %A"`)
+
+(include "./yuck/widgets.yuck")
+
+(defwidget hbar [] 
+    (centerbox
+        :class "hpanel"
+        (box
+            :class "leftBar"
+            :space-evenly false
+            (window :angle 0)
+        )
+        (box
+            :class "centerBar"
+        )
+        (box
+            :class "righBar"
+            :space-evenly false
+            :halign "end"
+            (colorpicker)
+            (panel_system_indicators :orientation "v")
+        )
+    )
+)
+
+
+(defwindow bar
+    :monitor 0
+    :exclusive true8
+    :stacking "fg"
+    :namespace "eww_bar"
+    :geometry (geometry :width "80%"
+                        :height "1%"
+                        :anchor "top center")
+    (hbar))
+
+(defwindow example
+           :monitor 0
+           :geometry (geometry :x "0%"
+                               :y "20px"
+                               :width "90%"
+                               :height "30px"
+                               :anchor "top center")
+           :stacking "fg"
+           :reserve (struts :distance "40px" :side "top")
+           :windowtype "dock"
+           :wm-ignore false
+  "example content")

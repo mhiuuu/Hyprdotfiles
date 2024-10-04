@@ -1,0 +1,55 @@
+@import url("./css/rightModules.css");
+@import url("./css/leftModules.css");
+
+* {
+    font-family: "Cascadia Code", "monospace", monospace;
+    font-size: 12px;
+    font-weight: bolder;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    transition-property: background-color;
+    transition-duration: 0.5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+#workspaces {
+    margin: 0px 1px 0px 1px;
+    padding: 0px 0px;
+    border-radius: 15px;
+    border: 0px;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 16px;
+    color: #000000;
+}
+
+#workspaces button {
+    padding: 0px 5px;
+    margin: 4px 0px;
+    border-radius: 15px;
+    border: 0px;
+    color: #ffffff;
+    transition: all 0.3s ease-in-out;
+}
+
+#workspaces button.active {
+    color: #000000;
+    background: #cccccc;
+    border-radius: 15px;
+    min-width: 30px;
+    transition: all 0.3s ease-in-out;
+}
+
+.modules-left {
+    margin-left: 10px;
+}
+
+.modules-right {
+    margin-right: 20px;
+}

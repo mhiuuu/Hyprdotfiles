@@ -1,0 +1,48 @@
+{
+    "custom/launcher": {
+        "format": "󰌽",
+        "on-click": "rofi show -drun"
+    },
+    "custom/texttwo": {
+        "exec": "echo '󰉓   File'",
+        "interval": 60,
+        "return-type": "plain",
+        "on-click": "Thunar"
+    },
+    "custom/textthree": {
+        "exec": "echo '󰨞  Code'",
+        "interval": 60,
+        "return-type": "plain",
+        "on-click": "code"
+    },
+    "custom/textfour": {
+        "exec": "echo '  Terminal'",
+        "interval": 60,
+        "return-type": "plain",
+        "on-click": "kitty"
+    },
+    "custom/textfive": {
+        "exec": "echo '󰇩  Browser'",
+        "interval": 60,
+        "return-type": "plain",
+        "on-click": "vivaldi"
+    },
+    "hyprland/window": {
+        "format": "{class}",
+        "max-length": 20,
+        "icon": true,
+        "icon-size": 15,
+        "rewrite": {
+            "^(?!.*\\S).*": " Nothing"
+        }
+    },
+    "custom/media": {
+        "exec": "~/.config/waybar/scripts/media.sh",
+        "interval": 1,
+        "return-type": "plain-text",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous",
+        "escape": true
+    }
+}

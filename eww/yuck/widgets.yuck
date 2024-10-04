@@ -1,0 +1,7 @@
+(include "./yuck/widgets/bar_widgets.yuck")
+(include "./yuck/widgets/window.yuck")
+(include "./yuck/widgets/color_picker.yuck")
+(include "./yuck/widgets/launcher.yuck")
+(include "./yuck/widgets/workspaces.yuck")
+(include "./yuck/widgets/powermenu.yuck")
+(include "./yuck/widgets/clock.yuck")
