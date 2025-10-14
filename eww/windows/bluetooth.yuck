@@ -1,0 +1,56 @@
+(defwindow bluetooth
+    :monitor 0
+    :geometry (geometry :x "6.5%"
+                        :y "1%"
+                        :width "250px"
+                        :anchor "top right")
+    :stacking "overlay"
+    :windowtype "dock"
+    (bluetooth_display)
+)
+
+(defwidget bluetooth_display [] 
+    (eventbox :onhoverlost "eww update SHOW_BLUETOOTH=false && eww close bluetooth"
+        (box :class "bluetooth-container" :orientation "v" :spacing 15 :space-evenly false
+            (label :class "header-text" :text "Bluetooth" :halign "start")
+
+            (scroll :vscroll true :height "100" 
+                (box :orientation "v" 
+                    (for device in BLUETOOTH_INFO
+                        (bluetooth_item :MAC {device.mac}
+                                        :NAME {device.name}
+                                        :TYPE {device.type}
+                                        :KNOWN {device.known}
+                                        :CURRENT {device.current}
+                        )
+                    )
+                )
+            )
+
+            (button 
+                :onclick "blueman-manager && disown"
+                (label 
+                    :class "more-bluetooth" 
+                    :text "More Bluetooth settings" 
+                    :halign "center")
+            )
+        )
+    )
+)
+
+(defwidget bluetooth_item [ MAC NAME TYPE KNOWN CURRENT ]
+    (eventbox :onclick {CURRENT == true ? "bluetoothctl disconnect" : "${KNOWN == true ? "bluetoothctl connect ${MAC}" : "bluetoothctl pair ${MAC} && bluetoothctl connect ${MAC}"}"}
+        (box :class "bluetooth_item" :orientation "h" :space-evenly false :spacing 20
+            (label :class "bluetooth_device_type" :text "${TYPE == "Headset" ? "" : 
+                                                           TYPE == "Audio" ? "󰓃" : 
+                                                           TYPE == "Keyboard" ? "" : 
+                                                           TYPE == "Mouse" ? "󰍽" : 
+                                                           TYPE == "Phone" ? "" : "󰊴"}")
+            (label :text NAME :hexpand true :halign "start")
+            (image :path "${KNOWN == true ? "${icon_base}network-wireless-hotspot-symbolic.svg" : "" }"
+                   :image-height icon_size
+                   :image-width icon_size
+            )
+        )
+    )
+)

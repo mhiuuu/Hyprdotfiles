@@ -1,11 +1,17 @@
 #!/bin/bash
 
-get_percent() {
-  current=$(brightnessctl get)
-  max=$(brightnessctl max)
-  percent=$(echo "scale=2; ($current/$max)*100" | bc)
-  result=$(echo "$percent/1" | bc)
-  echo "$result%"
+get_brightness() {
+    current=$(brightnessctl get)
+    max=$(brightnessctl max)
+
+    percent=$(( current * 100 / max ))
+
+    printf '{"display": "%d%%", "level": %d}\n' "$percent" "$percent"
 }
 
-get_percent
+get_brightness
+
+udevadm monitor --udev --subsystem-match=backlight \
+  | while read -r _; do
+        get_brightness
+    done

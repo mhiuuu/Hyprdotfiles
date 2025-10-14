@@ -1,17 +1,42 @@
+;; Icons & Paths
 (defvar icon_size 15)
 (defvar icon_base "/home/duck/.local/share/icons/WhiteSur-dark/status/symbolic/")
+(defvar DND false)
 
-(defpoll bluetooth_status :initial "on" :interval "1s" "bluetooth | awk '{print $3}'")
-(defpoll network_signal :initial 0 :interval "1s" "nmcli -f IN-USE,SIGNAL device wifi | grep '^\*' | awk '{print $2}'")
+;; System Services
+(defpoll bluetooth_status :interval "500ms" "bluetoothctl show | grep 'Powered:' | awk '{print $2}'")
+(defpoll BLUETOOTH_INFO :interval "5s" "~/.config/eww/scripts/bluetooth.sh")
+(defvar SHOW_BLUETOOTH false)
+
+;; Networking
+(deflisten network "./scripts/network/network.sh")
 (defpoll network_type :interval "1s" "nmcli -t -f TYPE connection show --active | head -n 1")
+(defpoll network_info :interval "5s" "~/.config/eww/scripts/network/network_info.sh")
+(defvar wireless true)
+(defvar SHOW_WIFI false)
+
+;; Media
 (deflisten music :initial "" "playerctl --follow metadata --format '{{ title }}'")
-(defpoll time :interval "5s" "date '+%a %H:%M'")
-(defpoll active_window_icon :interval "100ms" "./scripts/active_window_icon.sh")
-(defpoll updates :initial 0 :interval "5s" "./scripts/updates.sh")
-(defpoll battery_percent :initial 100 :interval "5s" "echo $(($(cat /sys/class/power_supply/BAT0/capacity)))")
-(defpoll battery_status :interval "5s" "cat /sys/class/power_supply/BAT0/status")
-(defpoll volume-display :initial 100 :interval "200ms" "pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}'")
-(defpoll volume-level :initial 100 :interval "200ms" "pactl get-sink-volume @DEFAULT_SINK@ | awk '{print $5}' | tr -d '%'")
-(defpoll brightness-display :initial 100 :interval "200ms" "./scripts/brightness.sh")
-(defpoll brightness-level :initial 100 :interval "200ms" "./scripts/brightness.sh | tr -d '%'")
-(defpoll fcitx5 :initial "1" :interval "100ms" "fcitx5-remote --check")
+
+;; Windows / UI
+(defpoll active_window_icon :interval "150ms" "./scripts/active_window_icon.sh")
+(defvar SHOW_CONTROL_CENTER false)
+(defvar ACTIVE_INPUT "")
+
+;; Updates
+(defpoll updates :initial 0 :interval "60s" "./scripts/updates.sh")
+
+;; Battery
+(defvar battery-revealed false)
+(defvar COFFEE false) ;;COFFEE is always off at start up because I run hypridle exec
+
+;; Volume
+(deflisten volume :initial 100 "./scripts/volume.sh")
+(defvar volume-revealed false)
+
+;; Brightness
+(deflisten brightness "./scripts/brightness.sh")
+(defvar brightness-revealed false)
+
+;; Input Method
+(defpoll fcitx5 :initial "1" :interval "200ms" "fcitx5-remote --check")

@@ -1,6 +1,6 @@
-$bg-color: rgba(0, 0, 0, 0.35);
+$bg-color: rgba(0, 0, 0, 0.45);
 $item-bg-color: #1a3c70;
-$item-active-color: #0077ff;
+$item-active-color: #004da7;
 $text-color: #ffffff;
 $subtext-color: #a0b4d0;
 $border-radius: 20px;
@@ -11,7 +11,6 @@ $border-radius-sm: 20px;
   border-radius: $border-radius;
   padding: 12px;
   color: $text-color;
-  font-family: "SF Pro Text", "Roboto", sans-serif;
 }
 
 .header {
@@ -47,7 +46,7 @@ $border-radius-sm: 20px;
 .connectivity-icon-container {
   background-color: #335383;
   border-radius: 50%;
-  padding: 8px;
+  padding: 9px;
   min-width: 30px;
 }
 
@@ -70,12 +69,12 @@ $border-radius-sm: 20px;
 }
 
 .function-button {
-  background-color: $item-bg-color;
+  background-color: #335383;
   border-radius: $border-radius-sm;
   padding: 10px 8px;
 
   &.active {
-    background-color: darken($item-bg-color, 10%);
+    background-color: $item-active-color;
   }
 }
 

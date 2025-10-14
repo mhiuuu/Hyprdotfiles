@@ -6,8 +6,42 @@
   font-weight: bold;
 }
 
-.workspaces button:hover {
-  color: #D35D6E;
+$fg-alt2: #63697B;
+$black: #4D4D4D;
+$green: #204a6e;
+
+.workspaces {
+  font-size: 1.8rem;
+  border-radius: 1rem;
+  margin: 0 0 0 -.3rem;
+
+  button {
+    &.empty {
+      color: $black;
+    }
+
+    &.occupied {
+      color: lighten($color: $fg-alt2, $amount: 10%);
+    }
+
+    &.current {
+      color: $green;
+    }
+
+    &:hover {
+      &.empty {
+        color: lighten($color: $black, $amount: 5%);
+      }
+
+      &.occupied {
+        color: lighten($color: $black, $amount: 20%);
+      }
+
+      &.current {
+        color: darken($color: $green, $amount: 10%);
+      }
+    }
+  }
 }
 
 .small_icon {

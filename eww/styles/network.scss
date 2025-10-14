@@ -1,0 +1,17 @@
+.networking-container {
+  background-color: $bg-color;
+  padding: 15px 5px;
+  border-radius: $border-radius;
+}
+
+.header-text {
+  margin: 0 10px;
+}
+
+.network-item {
+  padding: 10px;
+
+  &:hover {
+    background-color: gray;
+  }
+}

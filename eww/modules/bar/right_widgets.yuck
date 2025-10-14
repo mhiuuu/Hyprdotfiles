@@ -1,136 +1,159 @@
-(defvar show_control_center false)
-
 (defwidget control_setting_icon []
-  (eventbox :onhover "eww update show_control_center=true && eww open control-center"
-            :class "control_setting_icon small_icon"
-    (box :orientation "v"  
-         :halign "center" 
-         :valign "center"
-      (label :text "󰟡" :class "control-icon")
+    (eventbox 
+        :onhover "./scripts/window_management.sh controlcenter"
+        :class "control_setting_icon small_icon"
+        (box 
+            :orientation "v"
+            :halign "center"
+            :valign "center"
+            (label 
+                :text "󰟡" 
+                :class "control-icon")
+        )
     )
-  )
 )
 
 (defwidget time [] 
-  (box  :class "time"
-        :orientation "h"
-    (label :text time)
+  (box  
+    :class "time"
+    :orientation "h"
+    (label 
+      :text "${formattime(EWW_TIME, "%a %d %b %I:%M %p")}")
   )
 )
 
 (defwidget updates []
-  (box  :class "updates"
+    (box  
+        :class "updates"
         :orientation "h"
         :spacing 5
-    (image  :path "${icon_base}mintupdate-type-package-symbolic.svg"
+        (image  
+            :path "${icon_base}mintupdate-type-package-symbolic.svg"
             :image-width icon_size
-            :image-height icon_size
+            :image-height icon_size)
+        (label 
+            :text updates)
     )
-    (label :text updates)
-  )
 )
 
 (defwidget lang []
-  (eventbox :onclick "fcitx5-remote -t"
-    (box  :class "lang"
-          :orientation "h"
-      (label :text {fcitx5 == "1" ? "E" : "V"})
+    (eventbox 
+        :onclick "fcitx5-remote -t"
+        (box  
+            :class "lang"
+            :orientation "h"
+            (label 
+                :text {fcitx5 == "1" ? "E" : "V"})
+        )
     )
-  )
 )
 
 (defwidget bluetooth [] 
-  (box  :class "bluetooth" 
-        :orientation "h"
-    (image  :path {bluetooth_status == "on" ? "${icon_base}bluetooth-active-symbolic.svg" : "${icon_base}bluetooth-disabled-symbolic.svg"}
+    (eventbox 
+        :class "bluetooth" 
+        :onhover "./scripts/window_management.sh bluetooth"
+        (image  
+            :path {bluetooth_status == "yes" ? 
+                   "${icon_base}bluetooth-active-symbolic.svg" : 
+                   "${icon_base}bluetooth-disabled-symbolic.svg"}
             :image-width icon_size
-            :image-height icon_size
+            :image-height icon_size)
     )
-  )
 )
 
 (defwidget network []
-  (box :class "network"
-       :orientation "h"
-    (image :path {network_type == "802-11-wireless" ? 
-                  "${icon_base}nm-signal-${network_signal <= 12.5 ? "00" :
-                                           network_signal <= 37.5 ? "25" :
-                                           network_signal <= 62.5 ? "50" :
-                                           network_signal <= 87.5 ? "75" : "100"}-symbolic.svg" :
-                  network_type == "802-3-ethernet" ?
-                  "${icon_base}network-wired-symbolic.svg" :
-                  "${icon_base}network-offline-symbolic.svg"}
-           :image-width icon_size
-           :image-height icon_size
+    (eventbox 
+        :class "network"
+        :onhover "./scripts/window_management.sh wifi"
+        (image 
+            :path {network_type == "802-11-wireless" ? 
+                   "${icon_base}nm-signal-${network.signal <= 12.5 ? "00" :
+                                            network.signal <= 37.5 ? "25" :
+                                            network.signal <= 62.5 ? "50" :
+                                            network.signal <= 87.5 ? "75" : "100"}-symbolic.svg" :
+                   network_type == "802-3-ethernet" ?
+                   "${icon_base}network-wired-symbolic.svg" :
+                   "${icon_base}network-offline-symbolic.svg"}
+            :image-width icon_size
+            :image-height icon_size)
     )
-  )
 )
 
-(defvar volume-revealed false)
-(defvar brightness-revealed false)
-(defvar battery-revealed false)
-
 (defwidget volume []
-  (eventbox :onhover "eww update volume-revealed=true"
-            :onhoverlost "eww update volume-revealed=false"
-    (box :class "volume"
-         :orientation "h"
-         :space-evenly false
-         :spacing 5
-      (image :path "${icon_base}audio-volume-${volume-level == 0 ? "muted" :
-                                             volume-level <= 33 ? "low" :
-                                             volume-level <= 66 ? "medium" : "high"}-symbolic.svg"
-             :image-width icon_size
-             :image-height icon_size
-      )
-      (revealer :reveal volume-revealed
+    (eventbox 
+        :onhover "eww update volume-revealed=true"
+        :onhoverlost "eww update volume-revealed=false"
+        (box 
+            :class "volume"
+            :orientation "h"
+            :space-evenly false
+            :spacing 5
+            (image 
+                :path "${icon_base}audio-volume-${volume.level == 0 ? "muted" :
+                                                volume.level <= 33 ? "low" :
+                                                volume.level <= 66 ? "medium" : "high"}-symbolic.svg"
+                :image-width icon_size
+                :image-height icon_size)
+            (revealer 
+                :reveal volume-revealed
                 :transition "slideleft"
                 :duration "200ms"
-        (label :text " ${volume-level}%" :class "level-text")
-      )
+                (label 
+                    :text " ${volume.level}%" 
+                    :class "level-text")
+            )
+        )
     )
-  )
 )
 
 (defwidget brightness []
-  (eventbox :onhover "eww update brightness-revealed=true"
-            :onhoverlost "eww update brightness-revealed=false"
-    (box :class "brightness"
-         :orientation "h"
-         :space-evenly false
-         :spacing 5
-      (image :path "${icon_base}display-brightness-${brightness-level == 0 ? "off" :
-                                                     brightness-level <= 33 ? "low" :
-                                                     brightness-level <= 66 ? "medium" : "high"}-symbolic.svg"
-             :image-width icon_size
-             :image-height icon_size
-      )
-      (revealer :reveal brightness-revealed
+    (eventbox 
+        :onhover "eww update brightness-revealed=true"
+        :onhoverlost "eww update brightness-revealed=false"
+        (box 
+            :class "brightness"
+            :orientation "h"
+            :space-evenly false
+            :spacing 5
+            (image 
+                :path "${icon_base}display-brightness-${brightness.level == 0 ? "off" :
+                                                        brightness.level <= 33 ? "low" :
+                                                        brightness.level <= 66 ? "medium" : "high"}-symbolic.svg"
+                :image-width icon_size
+                :image-height icon_size)
+            (revealer 
+                :reveal brightness-revealed
                 :transition "slideleft"
                 :duration "200ms"
-        (label :text " ${brightness-level}%" :class "level-text")
-      )
+                (label 
+                    :text " ${brightness.level}%" 
+                    :class "level-text")
+            )
+        )
     )
-  )
 )
 
 (defwidget battery []
-  (eventbox :onhover "eww update battery-revealed=true"
-            :onhoverlost "eww update battery-revealed=false"
-    (box :class "battery"
-         :orientation "h"
-         :space-evenly false
-         :spacing 5
-      (image :path {battery_status == "Discharging" ? "${icon_base}battery-level-${round(battery_percent / 10, 0) * 10}-symbolic.svg" :
-                    (battery_percent < 100 ? "${icon_base}battery-level-${round(battery_percent / 10, 0) * 10}-charging-symbolic.svg" : 
-                    "${icon_base}battery-level-${battery_percent}-charged-symbolic.svg")}
-      )
-      (revealer :reveal battery-revealed
+    (eventbox 
+        :onhover "eww update battery-revealed=true"
+        :onhoverlost "eww update battery-revealed=false"
+        (box 
+            :class "battery"
+            :orientation "h"
+            :space-evenly false
+            :spacing 5
+            (image 
+                :path {EWW_BATTERY.BAT0.status == "Discharging" ? 
+                       "${icon_base}battery-level-${round(EWW_BATTERY.BAT0.capacity / 10, 0) * 10}-symbolic.svg" :
+                       (EWW_BATTERY.BAT0.capacity  < 100 ? "${icon_base}battery-level-${round(EWW_BATTERY.BAT0.capacity / 10, 0) * 10}-charging-symbolic.svg" : 
+                                                           "${icon_base}battery-level-${EWW_BATTERY.BAT0.capacity}-charged-symbolic.svg")})
+            (revealer 
+                :reveal battery-revealed
                 :transition "slideleft"
                 :duration "200ms"
-        (label :text " ${battery_percent}%" :class "level-text")
-      )
+                (label 
+                    :text "${EWW_BATTERY.BAT0.capacity}%")
+            )
+        )
     )
-  )
 )
-

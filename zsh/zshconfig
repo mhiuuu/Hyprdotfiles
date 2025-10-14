@@ -24,7 +24,7 @@ zinit light jeffreytse/zsh-vi-mode
 alias cat="bat"
 alias ls="exa --icons"
 alias up="yay -Syu --noconfirm"
-
+alias yay_cleaning="sudo pacman -Qtdq | sudo pacman -Rns -"
 fastfetch
 eval "$(starship init zsh)"
 

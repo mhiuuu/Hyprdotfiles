@@ -3,15 +3,15 @@
 (include './modules/bar/right_widgets.yuck')
 
 (defwidget bar []
-  (centerbox :orientation "h"
-    (left_bar)
-    (workspaces)
-    (right_bar)
-  )
+    (centerbox :orientation "h"
+        (left_bar)
+        (workspaces)
+        (right_bar)
+    )
 )
 
 (defwidget left_bar [] 
-  (box  :class "left_bar"
+    (box :class "left_bar"
         :orientation "h"
         :halign "start"
         :space-evenly false 
@@ -22,11 +22,11 @@
         (cpu)
         (disk)
         (music)
-  )
+    )
 )
 
 (defwidget right_bar [] 
-  (box  :class "right_bar" 
+    (box :class "right_bar" 
         :orientation "h" 
         :halign "end"
         :space-evenly false
@@ -40,30 +40,44 @@
         (bluetooth)
         (control_setting_icon)
         (time)
-  )
+    )
 )
 
+(deflisten hyprland "./scripts/workspaces.sh")
+
 (defwidget workspaces []
-  (box :class "workspaces"
-       :orientation "h"
-       :space-evenly true
-       :halign "start"
-       :spacing 20
-    (button :onclick "wmctrl -s 0" 1)
-    (button :onclick "wmctrl -s 1" 2)
-    (button :onclick "wmctrl -s 2" 3)
-    (button :onclick "wmctrl -s 3" 4)
-    (button :onclick "wmctrl -s 4" 5)
-  )
+    (box 
+        :class "workspaces"
+        :halign "start"
+        :spacing 10
+        :orientation "h"
+        :space-evenly false
+        (for workspace in hyprland
+            (eventbox
+                :cursor "pointer"
+                :onscroll "echo {} | sed -e 's/up/-1/g' -e 's/down/+1/g' | xargs hyprctl dispatch workspace"
+                :halign "center"
+                (button 
+                    :class "${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                    :onclick "hyprctl dispatch workspace ${workspace.id}"
+                    (button
+                        :width 20
+                        :class "icon ${workspace.current ? "current" : ""} ${workspace.windows > 0 ? "occupied" : "empty"}"
+                        {workspace.current ? "" : ""}
+                    )
+                )
+            )
+        )
+    )
 )
 
 (defwindow bar
-  :monitor 0
-  :exclusive "true"
-  :geometry (geometry :x "0%"
-                      :y "0%"
-                      :width "100%"
-                      :height "3%"
-                      :anchor "top center")
-  (bar)
+    :monitor 0
+    :exclusive "true"
+    :geometry (geometry :x "0%"
+        :y "0%"
+        :width "100%"
+        :height "3%"
+        :anchor "top center")
+    (bar)
 )

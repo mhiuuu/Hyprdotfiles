@@ -1,84 +1,184 @@
 (defwindow control-center
-  :monitor 0
-  :geometry (geometry :x "4%"
-                      :y "1%"
-                      :width "320px"
-                      :height "100px"
-                      :anchor "top right")
-  :stacking "overlay"
-  :windowtype "dock"
-  (control-center-widget)
+    :monitor 0
+    :geometry (geometry 
+        :x "2%"
+        :y "1%"
+        :width "320px"
+        :height "100px"
+        :anchor "top right")
+    :stacking "overlay"
+    :windowtype "dock"
+    (control-center-widget)
 )
 
 (defwidget control-center-widget []
-  (eventbox :onhover "eww update show_control_center=true"
-            :onhoverlost "eww update show_control_center=false && eww close control-center"
-            :class "control-center-hover-area"
-    (box :class "control-center-container" :orientation "v" :space-evenly false :spacing 10
-      (box :class "header" :space-evenly false :spacing 10 :halign "center"
-        (label :class "header-app" :text "CONTROL PANEL")
-      )
-      (box :class "quick-settings" :orientation "h" :spacing 10 :space-evenly false
-        (box :class "quick-connections" :orientation "v" 
-          (connectivity-button :icon "󰤨" :label "Wi-Fi" :sublabel "XIAOMI 6E" :active true)
-          (connectivity-button :icon "󰂯" :label "Bluetooth" :sublabel "On" :active true)
+    (eventbox 
+        :onhoverlost "eww update show_control_center=false && eww close control-center"
+        :class "control-center-hover-area"
+        (box 
+            :class "control-center-container" 
+            :orientation "v" 
+            :space-evenly false 
+            :spacing 10
+            (box 
+                :class "header" 
+                :space-evenly false 
+                :spacing 10 
+                :halign "center"
+                (label 
+                    :class "header-app" 
+                    :text "CONTROL PANEL")
+            )
+            (box 
+                :class "quick-settings" 
+                :orientation "h" 
+                :spacing 10 
+                :space-evenly false
+                (box 
+                    :class "quick-connections" 
+                    :orientation "v"
+                    (connectivity-button 
+                        :icon "󰤨" 
+                        :label "Wi-Fi" 
+                        :sublabel "${wireless == false ? "Off" : network.ssid}"
+                        :active wireless)
+                    (connectivity-button 
+                        :icon "󰂯" 
+                        :label "Bluetooth" 
+                        :sublabel "${bluetooth_status == "yes" ? "On" : "Off"}" 
+                        :active {bluetooth_status == "yes" ? true : false})
+                )
+                (box 
+                    :class "function-buttons" 
+                    :orientation "v" 
+                    :spacing 10
+                    (function-button 
+                        :icon "" 
+                        :label "Coffee Mode" 
+                        :subtext "${COFFEE == true ? "On" : "Off"}" 
+                        :active COFFEE)
+                    (function-button 
+                        :icon "󰍶" 
+                        :label "DND" 
+                        :subtext "${DND == true ? "On" : "Off"}" 
+                        :active DND)
+                )
+            )
+            (box 
+                :class "slider-container" 
+                :orientation "v" 
+                :space-evenly false 
+                :spacing 20
+                (slider-control 
+                    :icon "󰍹" 
+                    :name "Display" 
+                    :type "brightness")
+                (slider-control 
+                    :icon "󰕾" 
+                    :name "Audio" 
+                    :type "volume")
+            )
         )
-        (box :class "function-buttons" :orientation "v" :spacing 10
-          (function-button :icon "󰿎" :label "Battery Mode" :subtext "Eco" :active false)
-            (function-button :icon "󰍶" :label "DND" :subtext "On" :active true) 
-        )
-      )
-      (box :class "slider-container" :orientation "v" :space-evenly false :spacing 20
-        (slider-control :icon "󰍹" :name "Display" :type "brightness")
-        (slider-control :icon "󰕾" :name "Audio" :type "volume")
-      )
     )
-  )
 )
 
 (defwidget connectivity-button [icon label sublabel active]
-  (box :class "connectivity-button-container" :orientation "h" :space-evenly false
-    (box :class "connectivity-button ${active ? 'active' : 'inactive'}" :space-evenly false :spacing 10
-      (box :class "connectivity-icon-container" :halign "center"
-       (label :class "connectivity-icon" :text icon)
-      )
-      (box :orientation "v" :valign "center" 
-       (label :class "connectivity-label" :text label :halign "start")
-       (label :class "connectivity-sublabel" :text sublabel :halign "start")
-      )
+    (box 
+        :class "connectivity-button-container" 
+        :orientation "h" 
+        :space-evenly false
+        (eventbox 
+            :onclick {active == true ? "${label == "Wi-Fi" ? "eww update wireless=false && nmcli radio wifi off" : "bluetoothctl power off" }" :
+                                       "${label == "Wi-Fi" ? "eww update wireless=true && nmcli radio wifi on" : "bluetoothctl power on" }"}
+            (box 
+                :class "connectivity-button ${active ? 'active' : 'inactive'}" 
+                :space-evenly false 
+                :spacing 10
+                (box 
+                    :class "connectivity-icon-container" 
+                    :halign "center"
+                    (label 
+                        :class "connectivity-icon" 
+                        :text icon)
+                )
+                (box 
+                    :orientation "v" 
+                    :valign "center"
+                    :hexpand true
+                    (label 
+                        :class "connectivity-label" 
+                        :text label 
+                        :halign "start")
+                    (label 
+                        :class "connectivity-sublabel" 
+                        :text sublabel 
+                        :halign "start")
+                )
+            )
+        )
+        (eventbox 
+            :class "connectivity-more" 
+            :onclick {label == "Wi-Fi" ? "eww open wifi" : "eww open bluetooth"}
+            (label 
+                :class "connectivity-arrow" 
+                :text ">")
+        )
     )
-    (box :class "connectivity-more" :halign "end"
-      (label :class "connectivity-arrow" :text ">")
-    )
-  )
 )
 
-(defwidget function-button [icon label ?subtext active]
-  (box :class "function-button ${active ? 'active' : 'inactive'}"
-       :orientation "v"
-       :space-evenly false
-    (label :class "function-icon" :text icon)
-    (label :class "function-label" :text label)
-    (label :class "function-subtext" :text {subtext ?: ""})
-  )
+(defwidget function-button [icon label subtext active]
+    (eventbox 
+        :onclick {active == true ? "${label == "DND" ? "~/.config/eww/scripts/dnd.sh" : "hypridle & eww update COFFEE=false"}" : 
+                                   "${label == "DND" ? "~/.config/eww/scripts/dnd.sh" : "killall hypridle && eww update COFFEE=true"}"}
+        (box 
+            :class "function-button ${active ? 'active' : 'inactive'}"
+            :orientation "v"
+            :space-evenly false
+            (label 
+                :class "function-icon" 
+                :text icon)
+            (label 
+                :class "function-label" 
+                :text label)
+            (label 
+                :class "function-subtext" 
+                :text {subtext ?: ""})
+        )
+    )
 )
 
 (defwidget slider-control [icon name type]
-  (box :class "slider-control-row" :orientation "v" :space-evenly false :spacing 10
-    (box :class "slider-label" :orientation "h" :space-evenly false
-      (box :orientation "h" :space-evenly false :hexpand true
-        (label :class "slider-icon" :text icon)
-        (label :class "slider-name" :text name)
-      )
-      (label :class "slider-value" 
-             :text {type == "brightness" ? brightness-display : volume-display}
-             :halign "end")
+    (box 
+        :class "slider-control-row" 
+        :orientation "v" 
+        :space-evenly false 
+        :spacing 10
+        (box 
+            :class "slider-label" 
+            :orientation "h" 
+            :space-evenly false
+            (box 
+                :orientation "h" 
+                :space-evenly false 
+                :hexpand true
+                (label 
+                    :class "slider-icon" 
+                    :text icon)
+                (label 
+                    :class "slider-name" 
+                    :text name)
+            )
+            (label 
+                :class "slider-value"
+                :text {type == "brightness" ? brightness.display : volume.display}
+                :halign "end")
+        )
+        (scale 
+            :class "slider"
+            :value {type == "brightness" ? brightness.level : volume.level}
+            :onchange {type == "brightness" ? "brightnessctl set {}%" : "pactl set-sink-volume @DEFAULT_SINK@ {}%"}
+            :min {type == "brightness" ? 1 : 0}
+            :max 101
+        )
     )
-    (scale :class "slider"
-           :value {type == "brightness" ? brightness-level : volume-level}
-           :onchange {type == "brightness" ? "brightnessctl set {}%" : "pactl set-sink-volume @DEFAULT_SINK@ {}%"}
-           :min {type == "brightness" ? 1 : 0}
-           :max 101
-    )
-  )
 )

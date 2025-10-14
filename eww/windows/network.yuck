@@ -1,0 +1,89 @@
+(defwindow wifi
+    :monitor 0
+    :geometry (geometry 
+        :x "9.4%"
+        :y "1%"
+        :width "250px"
+        :height "200px"
+        :anchor "top right")
+    :stacking "overlay"
+    :windowtype "dock"
+    (networking)
+)
+
+(defwidget networking []
+    (eventbox 
+        :onhoverlost "eww update show_wifi=false && eww close wifi"
+        (box 
+            :class "networking-container" 
+            :orientation "v" 
+            :spacing 15 
+            :space-evenly false
+            (label 
+                :class "header-text" 
+                :text "Wifi" 
+                :halign "start")
+            (scroll 
+                :vscroll true 
+                :height "300"
+                (box 
+                    :orientation "v" 
+                    :space-evenly false
+                    (for net in network_info
+                        (wifi_connection 
+                            :ssid {net.ssid}
+                            :known {net.known}
+                            :strength {net.strength}
+                            :security {net.security}
+                            :current {net.current})
+                    )
+                )
+            )
+            (button 
+                :onclick "nm-connection-editor && disown"
+                (label 
+                    :class "more-wifi" 
+                    :text "More Wifi settings" 
+                    :halign "center")
+            )
+        )
+    )
+)
+
+(defwidget wifi_connection [ssid known strength security current]
+  (eventbox 
+    :onclick "${current == true 
+                ? `nmcli connection down id "${ssid}"` 
+                : `bash ~/.config/eww/scripts/network/wifi_connect.sh "${ssid}" "" ${security} ${known}`}"
+    (box 
+      :class "wifi-connection" 
+      :orientation "v" 
+      :space-evenly false 
+      (box 
+        :class "network-item"  
+        :orientation "h" 
+        :space-evenly false 
+        :spacing 5
+        (box 
+          :class "network_properties" 
+          :space-evenly false 
+          :spacing 10 
+          :halign "start" 
+          :hexpand true
+          (image 
+            :path "${icon_base}nm-signal-${strength == 0 ? "00" :
+                                         strength == 1 ? "25" :
+                                         strength == 2 ? "50" :
+                                         strength == 3 ? "75" : "100"}-symbolic.svg"
+            :image-height icon_size
+            :image-width icon_size)
+          (label :text ssid)
+        )
+        (label 
+          :class "small_icon"
+          :text "${current == true ? "" : 
+                  (known == true || security == false) ? "" : ""}")
+      )
+    )
+  )
+)

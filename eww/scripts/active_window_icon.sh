@@ -13,7 +13,6 @@ if [ -f "${icon_base}/${app_lower}.svg" ]; then
   exit 0
 fi
 
-#Try your apps mapping here
 case "$app_class" in
 "firefox" | "Firefox")
   echo "${icon_base}/firefox.svg"
@@ -25,7 +24,6 @@ case "$app_class" in
   echo "${icon_base}/discord.svg"
   ;;
 *)
-  # Default fallback
   echo "${icon_base}/preferences-system-linux.svg"
   ;;
 esac

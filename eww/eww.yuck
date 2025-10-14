@@ -1,4 +1,6 @@
-(include './windows/files.yuck')
 (include './windows/bar.yuck')
 (include './windows/control_center.yuck')
+(include './windows/network.yuck')
+(include './windows/bluetooth.yuck')
+(include './windows/wifi_password.yuck')
 (include './variables.yuck')

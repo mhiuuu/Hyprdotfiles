@@ -1,0 +1,86 @@
+@define-color bg_main      #101419;
+@define-color bg_focus     #0C1E23;
+@define-color fg_main      #ffffff;
+@define-color bg_trans     transparent;
+
+* {
+    background-image: none;
+    font-size: 14px;
+}
+
+window {
+    background-color: @bg_trans;
+}
+
+button {
+    color: @fg_main;
+    background-color: @bg_main;
+    outline-style: none;
+    border: none;
+    border-width: 0px;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 20px;
+    background-size: 20%;
+    border-radius: 0px;
+    box-shadow: none;
+    text-shadow: none;
+    animation: gradient_f 20s ease-in infinite;
+}
+
+button:focus {
+    background-color: @bg_focus;
+    background-size: 30%;
+}
+
+button:hover {
+    background-color: @bg_focus;
+    background-size: 30%;
+    border-radius: 10px;
+    animation: gradient_f 20s ease-in infinite;
+    transition: all 0.5s cubic-bezier(.55,0.0,.28,1.682);
+}
+
+button:focus#lock,
+button:active#lock {
+    border-radius: ${active_rad}px;
+    margin: ${hvr}px 0px ${hvr}px ${mgn}px;
+}
+
+button:focus#shutdown,
+button:active#shutdown,
+button:focus#suspend,
+button:active#suspend {
+    border-radius: ${active_rad}px;
+    margin: ${hvr}px 0px ${hvr}px 0px;
+}
+
+button:focus#reboot,
+button:active#reboot {
+    border-radius: ${active_rad}px;
+    margin: ${hvr}px ${mgn}px ${hvr}px 0px;
+}
+
+#lock {
+    background-image: image(url("/usr/share/wlogout/icons/lock.png"));
+    border-radius: ${button_rad}px 0px 0px ${button_rad}px;
+    margin: ${mgn}px 0px ${mgn}px ${mgn}px;
+}
+
+#suspend {
+    background-image: image(url("/usr/share/wlogout/icons/suspend.png"));
+    border-radius: 0px;
+    margin: ${mgn}px 0px ${mgn}px 0px;
+}
+
+#shutdown {
+    background-image: image(url("/usr/share/wlogout/icons/shutdown.png"));
+    border-radius: 0px;
+    margin: ${mgn}px 0px ${mgn}px 0px;
+}
+
+#reboot {
+    background-image: image(url("/usr/share/wlogout/icons/reboot.png"));
+    border-radius: 0px ${button_rad}px ${button_rad}px 0px;
+    margin: ${mgn}px ${mgn}px ${mgn}px 0px;
+}
