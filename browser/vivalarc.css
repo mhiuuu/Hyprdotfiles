@@ -5,622 +5,426 @@ vivaldi version: v6.6 - v7.0
 */
 
 :root {
-  --window-border: 4px; /* window border, recommend 4px~16px */
-  --linux-header: calc(
-    var(--window-border) + 20px
-  ); /* title bar extra height */
-  --addressbar-height: 36px;
-  --window-button-scale: 0.8;
-  --window-button-opacity: 0.3;
-  --tab-padding: calc(var(--window-border) / 2);
-  --colorToviTransparent: transparent;
-  --webview-shadow-light: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
-    0px 0px var(--window-border) 0px rgba(0, 0, 0, 0.1);
-  --webview-shadow-dark: 0px 2px 2px 0px rgba(0, 0, 0, 0.05),
-    0px 2px 8px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 1.2px #ffffff18;
+    --window-border: 4px;
+    /* window border, recommend 4px~16px */
+    --linux-header: calc(var(--window-border) + 20px);
+    /* title bar extra height */
+    --addressbar-height: 36px;
+    --window-button-scale: 0.8;
+    --window-button-opacity: 0.3;
+    --tab-padding: calc(var(--window-border) / 2);
+    --colorToviTransparent: transparent;
+    --webview-shadow-light: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
+        0px 0px var(--window-border) 0px rgba(0, 0, 0, 0.1);
+    --webview-shadow-dark: 0px 2px 2px 0px rgba(0, 0, 0, 0.05),
+        0px 2px 8px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 1.2px #ffffff18;
 }
 
 /*breakmode*/
 #browser.break-mode #main {
-  opacity: 0;
+    opacity: 0;
 }
 
 /*tabbarButton*/
-#browser:not(.tabs-top):not(.tabs-bottom)
-  .toolbar-tabbar
-  > .button-toolbar
-  > button {
-  opacity: 0.4;
+#browser:not(.tabs-top):not(.tabs-bottom) .toolbar-tabbar>.button-toolbar>button {
+    opacity: 0.4;
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom)
-  .toolbar-tabbar
-  > .button-toolbar
-  > button:hover {
-  opacity: 0.8;
+#browser:not(.tabs-top):not(.tabs-bottom) .toolbar-tabbar>.button-toolbar>button:hover {
+    opacity: 0.8;
 }
 
 /*footerDisplay*/
 #browser:not(.tabs-bottom):not(.tabs-top) footer#footer,
-:not(.tabs-bottom)#browser > footer,
-#browser > footer > .toolbar-statusbar {
-  background: transparent;
-  border: none;
+:not(.tabs-bottom)#browser>footer,
+#browser>footer>.toolbar-statusbar {
+    background: transparent;
+    border: none;
 }
 
 /*defaultBrowserModal*/
 #modal-bg.default-browser {
-  display: none;
+    display: none;
 }
 
 /*topHeader*/
-#browser:not(.is-settingspage):not(.address-top) > #header,
+#browser:not(.is-settingspage):not(.address-top)>#header,
 #browser:not(.is-settingspage):not(.tabs-top) #header,
-#browser.color-behind-tabs-off:not(.is-settingspage)#browser:not(.tabs-top):not(
-    .tabs-bottom
-  )
-  #header {
-  box-shadow: none;
-  overflow: visible;
+#browser.color-behind-tabs-off:not(.is-settingspage)#browser:not(.tabs-top):not(.tabs-bottom) #header {
+    box-shadow: none;
+    overflow: visible;
 }
 
-#browser:not(.is-settingspage).fullscreen > #header,
-#browser:not(.is-settingspage):not(.address-top).tabs-bottom > #header,
-#browser:not(.is-settingspage).tabs-off.address-top > #header,
+#browser:not(.is-settingspage).fullscreen>#header,
+#browser:not(.is-settingspage):not(.address-top).tabs-bottom>#header,
+#browser:not(.is-settingspage).tabs-off.address-top>#header,
 .color-behind-tabs-off:not(.is-settingspage)#browser.tabs-bottom #header {
-  display: none;
+    display: none;
 }
 
 /*topHeader-Linux*/
-#browser.linux:not(.is-settingspage):not(.address-top) > #header,
+#browser.linux:not(.is-settingspage):not(.address-top)>#header,
 #browser.linux:not(.is-settingspage):not(.tabs-top) #header,
-#browser.linux.color-behind-tabs-off:not(.is-settingspage)#browser:not(
-    .tabs-top
-  ):not(.tabs-bottom)
-  #header {
-  min-height: var(--linux-header) !important;
-  height: var(--linux-header) !important;
-  background: var(--colorTabBar);
+#browser.linux.color-behind-tabs-off:not(.is-settingspage)#browser:not(.tabs-top):not(.tabs-bottom) #header {
+    min-height: var(--linux-header) !important;
+    height: var(--linux-header) !important;
+    background: var(--colorTabBar);
 }
 
 .linux:not(.alt) #titlebar #pagetitle {
-  height: var(--linux-header);
-  padding: 0 120px;
-  font-size: 11px;
-  color: var(--colorFg);
-  opacity: 0.5;
+    height: var(--linux-header);
+    padding: 0 120px;
+    font-size: 11px;
+    color: var(--colorFg);
+    opacity: 0.5;
 }
 
-.linux:not(.alt) #titlebar #pagetitle > span {
-  text-align: center;
+.linux:not(.alt) #titlebar #pagetitle>span {
+    text-align: center;
 }
 
 /*windowVivaldi*/
 #browser.linux:not(.tabs-top) #titlebar .vivaldi {
-  color: var(--colorFgAlpha);
-  scale: calc(0.8 / var(--uiZoomLevel));
-  margin-left: -2px;
-  margin-top: 0px;
+    color: var(--colorFgAlpha);
+    scale: calc(0.8 / var(--uiZoomLevel));
+    margin-left: -2px;
+    margin-top: 0px;
 }
 
 #browser.linux:not(.tabs-top) #titlebar .vivaldi:hover {
-  color: var(--colorFg);
-  background-color: var(--colorImageBgAlpha), var(--colorBgAlpha);
+    color: var(--colorFg);
+    background-color: var(--colorImageBgAlpha), var(--colorBgAlpha);
 }
 
 /*windowButtonGroup-Linux*/
-#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom)
-  .window-buttongroup {
-  right: calc(var(--window-border) / var(--uiZoomLevel));
-  top: calc(1px / var(--uiZoomLevel));
+#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom) .window-buttongroup {
+    right: calc(var(--window-border) / var(--uiZoomLevel));
+    top: calc(1px / var(--uiZoomLevel));
 }
 
-#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom)
-  .window-buttongroup
-  button {
-  width: calc((var(--linux-header) - 2px) * 1.32 / var(--uiZoomLevel));
-  height: calc((var(--linux-header) - 2px) / var(--uiZoomLevel));
-  padding: 0px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom) .window-buttongroup button {
+    width: calc((var(--linux-header) - 2px) * 1.32 / var(--uiZoomLevel));
+    height: calc((var(--linux-header) - 2px) / var(--uiZoomLevel));
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom)
-  .window-buttongroup
-  button
-  svg {
-  scale: calc(var(--window-button-scale) / var(--uiZoomLevel));
-  opacity: var(--window-button-opacity);
+#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom) .window-buttongroup button svg {
+    scale: calc(var(--window-button-scale) / var(--uiZoomLevel));
+    opacity: var(--window-button-opacity);
 }
 
-#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom)
-  .window-buttongroup
-  button
-  svg:hover {
-  opacity: 1;
+#browser.linux:not(.is-settingspage):not(.tabs-top):not(.tabs-bottom) .window-buttongroup button svg:hover {
+    opacity: 1;
 }
 
 /*addressbar_legacy*/
-#browser.linux:not(.tabs-top):not(.tabs-bottom).address-top
-  .toolbar:has(.window-buttongroup.on-mainbar) {
-  min-height: calc((var(--addressbar-height)) / var(--uiZoomLevel));
+#browser.linux:not(.tabs-top):not(.tabs-bottom).address-top .toolbar:has(.window-buttongroup.on-mainbar) {
+    min-height: calc((var(--addressbar-height)) / var(--uiZoomLevel));
 }
 
 /*mainbar*/
-.color-behind-tabs-off.address-top#browser:not(.tabs-top):not(.tabs-bottom)
-  .mainbar,
-.color-behind-tabs-on.address-top#browser:not(.tabs-top):not(.tabs-bottom)
-  .mainbar {
-  border: none;
-  background: transparent;
+.color-behind-tabs-off.address-top#browser:not(.tabs-top):not(.tabs-bottom) .mainbar,
+.color-behind-tabs-on.address-top#browser:not(.tabs-top):not(.tabs-bottom) .mainbar {
+    border: none;
+    background: transparent;
 }
 
-.color-behind-tabs-off.address-top#browser:not(.tabs-top):not(.tabs-bottom)
-  .mainbar {
-  -webkit-app-region: drag;
+.color-behind-tabs-off.address-top#browser:not(.tabs-top):not(.tabs-bottom) .mainbar {
+    -webkit-app-region: drag;
 }
 
 #browser:not(.tabs-top):not(.tabs-bottom).address-top .UrlBar-SearchField,
 #browser:not(.tabs-top):not(.tabs-bottom).address-top .UrlBar-AddressField,
 #browser:not(.tabs-top):not(.tabs-bottom).address-top .SearchField {
-  background-color: var(--colorFgAlpha);
+    background-color: var(--colorFgAlpha);
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom).dim-blurred:not(.hasfocus)
-  .UrlBar-AddressField,
-#browser:not(.tabs-top):not(.tabs-bottom).dim-blurred:not(.hasfocus)
-  .SearchField,
+#browser:not(.tabs-top):not(.tabs-bottom).dim-blurred:not(.hasfocus) .UrlBar-AddressField,
+#browser:not(.tabs-top):not(.tabs-bottom).dim-blurred:not(.hasfocus) .SearchField,
 #browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .SearchField,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .UrlBar-AddressField {
-  border: 1px solid var(--colorFgAlpha);
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .UrlBar-AddressField {
+    border: 1px solid var(--colorFgAlpha);
 }
 
 .UrlFragment-Wrapper--ShouldHighlight {
-  --HighlightColor: var(--colorFgIntense);
-  --LowlightColor: var(--colorFgFadedMore);
+    --HighlightColor: var(--colorFgIntense);
+    --LowlightColor: var(--colorFgFadedMore);
 }
 
-.button-toolbar > button {
-  border-radius: var(--radiusHalf);
+.button-toolbar>button {
+    border-radius: var(--radiusHalf);
 }
 
 #browser:not(.tabs-top):not(.tabs-bottom) .ExtensionIcon--Hidden {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 .profile-popup {
-  margin: 0px 5px;
+    margin: 0px 5px;
 }
 
-.disable-titlebar
-  .toolbar-mainbar
-  .toolbar-extensions
-  > .button-toolbar
-  > button,
-.disable-titlebar
-  .toolbar-mainbar
-  .page-zoom-controls
-  > .button-toolbar
-  > button,
-.disable-titlebar .toolbar-mainbar > .button-toolbar > button,
-.disable-titlebar
-  .toolbar-mainbar
-  .toolbar-extensions
-  > .toolbar-group
-  > .button-toolbar
-  > button,
-.disable-titlebar
-  .toolbar-mainbar
-  .page-zoom-controls
-  > .toolbar-group
-  > .button-toolbar
-  > button,
-.disable-titlebar .toolbar-mainbar > .toolbar-group > .button-toolbar > button,
+.disable-titlebar .toolbar-mainbar .toolbar-extensions>.button-toolbar>button,
+.disable-titlebar .toolbar-mainbar .page-zoom-controls>.button-toolbar>button,
+.disable-titlebar .toolbar-mainbar>.button-toolbar>button,
+.disable-titlebar .toolbar-mainbar .toolbar-extensions>.toolbar-group>.button-toolbar>button,
+.disable-titlebar .toolbar-mainbar .page-zoom-controls>.toolbar-group>.button-toolbar>button,
+.disable-titlebar .toolbar-mainbar>.toolbar-group>.button-toolbar>button,
 #browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .ExtensionIcon {
-  border-radius: var(--radiusHalf);
+    border-radius: var(--radiusHalf);
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .toolbar-mainbar
-  .toolbar-extensions
-  > .button-toolbar
-  > button:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .toolbar-mainbar
-  .page-zoom-controls
-  > .button-toolbar
-  > button:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .toolbar-mainbar
-  > .button-toolbar
-  > button:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .toolbar-mainbar
-  .toolbar-extensions
-  > .toolbar-group
-  > .button-toolbar
-  > button:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .toolbar-mainbar
-  .page-zoom-controls
-  > .toolbar-group
-  > .button-toolbar
-  > button:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .toolbar-mainbar
-  > .toolbar-group
-  > .button-toolbar
-  > button:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .ExtensionIcon:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .ExtensionIcon--Hidden:hover,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .ExtensionIcon--Hidden:active,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .bookmark-bar
-  button:hover {
-  background-color: var(--colorFgAlpha);
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .toolbar-mainbar .toolbar-extensions>.button-toolbar>button:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .toolbar-mainbar .page-zoom-controls>.button-toolbar>button:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .toolbar-mainbar>.button-toolbar>button:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .toolbar-mainbar .toolbar-extensions>.toolbar-group>.button-toolbar>button:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .toolbar-mainbar .page-zoom-controls>.toolbar-group>.button-toolbar>button:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .toolbar-mainbar>.toolbar-group>.button-toolbar>button:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .ExtensionIcon:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .ExtensionIcon--Hidden:hover,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .ExtensionIcon--Hidden:active,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .bookmark-bar button:hover {
+    background-color: var(--colorFgAlpha);
 }
 
-.color-behind-tabs-off
-  .ExtensionToggleIcon.ExtensionToggleIcon--extensionsExpanded {
-  background-color: transparent;
+.color-behind-tabs-off .ExtensionToggleIcon.ExtensionToggleIcon--extensionsExpanded {
+    background-color: transparent;
 }
 
 /*bookmark-bar*/
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off.bookmark-bar-top
-  .bookmark-bar,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  .bookmark-bar
-  button {
-  background: var(--colorTabBar);
-  color: var(--colorFg);
-  border-bottom-width: 0;
-  border-radius: var(--radiusHalf);
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off.bookmark-bar-top .bookmark-bar,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off .bookmark-bar button {
+    background: var(--colorTabBar);
+    color: var(--colorFg);
+    border-bottom-width: 0;
+    border-radius: var(--radiusHalf);
 }
 
 #browser .bookmark-bar {
-  padding-bottom: 5px;
+    padding-bottom: 5px;
 }
 
 /*workspace button*/
-#browser.transparent-tabbar
-  .button-toolbar.workspace-popup.tabbar-workspace-button,
-#browser.transparent-tabbar.tabs-left
-  .button-toolbar.workspace-popup.tabbar-workspace-button,
-#browser.transparent-tabbar.tabs-right
-  .button-toolbar.workspace-popup.tabbar-workspace-button,
+#browser.transparent-tabbar .button-toolbar.workspace-popup.tabbar-workspace-button,
+#browser.transparent-tabbar.tabs-left .button-toolbar.workspace-popup.tabbar-workspace-button,
+#browser.transparent-tabbar.tabs-right .button-toolbar.workspace-popup.tabbar-workspace-button,
 .tabs-left .button-toolbar.workspace-popup.tabbar-workspace-button,
 .tabs-right .button-toolbar.workspace-popup.tabbar-workspace-button {
-  box-shadow: none;
-  background: var(--colorToviTransparent);
+    box-shadow: none;
+    background: var(--colorToviTransparent);
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom).transparent-tabbar
-  .button-toolbar.workspace-popup.tabbar-workspace-button.button-menu {
-  color: var(--colorFg);
+#browser:not(.tabs-top):not(.tabs-bottom).transparent-tabbar .button-toolbar.workspace-popup.tabbar-workspace-button.button-menu {
+    color: var(--colorFg);
 }
 
 #app .tabs-left .button-toolbar.workspace-popup.tabbar-workspace-button button,
-#app
-  .tabs-right
-  .button-toolbar.workspace-popup.tabbar-workspace-button
-  button {
-  padding-left: 4px;
-  padding-right: 4px;
+#app .tabs-right .button-toolbar.workspace-popup.tabbar-workspace-button button {
+    padding-left: 4px;
+    padding-right: 4px;
 }
 
 .button-toolbar.button-menu .button-toolbar-menu-indicator.disabled {
-  opacity: 0.3;
+    opacity: 0.3;
 }
 
 /*tabbar left & tabbar right*/
 .tabs-left .tabbar-wrapper,
 .tabs-right .tabbar-wrapper {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 #browser.transparent-tabbar #tabs-tabbar-container.left,
 #browser.transparent-tabbar #tabs-tabbar-container.right,
 #browser:not(.transparent-tabbar) #tabs-tabbar-container {
-  background: var(--colorToviTransparent);
-  border: none;
-  box-shadow: none;
+    background: var(--colorToviTransparent);
+    border: none;
+    box-shadow: none;
 }
 
-#browser.tabs-left .inner > .tabbar-wrapper,
-#browser.tabs-right .inner > .tabbar-wrapper {
-  padding-bottom: var(--window-border);
+#browser.tabs-left .inner>.tabbar-wrapper,
+#browser.tabs-right .inner>.tabbar-wrapper {
+    padding-bottom: var(--window-border);
 }
 
 /* Remove tab icon glow effects */
 .tab .tab-header .favicon,
 .tab .tab-header svg,
 .tab .tab-header img {
-  filter: none !important;
-  box-shadow: none !important;
-  background: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    background: none !important;
 }
 
 .tab.active .tab-header .favicon,
 .tab.active .tab-header svg,
 .tab.active .tab-header img {
-  filter: none !important;
-  box-shadow: none !important;
-  background: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    background: none !important;
 }
 
 .tab:hover .tab-header .favicon,
 .tab:hover .tab-header svg,
 .tab:hover .tab-header img {
-  filter: none !important;
-  box-shadow: none !important;
-  background: none !important;
+    filter: none !important;
+    box-shadow: none !important;
+    background: none !important;
 }
 
 /*tabs-stack.tabs-subcontainer*/
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  #tabs-subcontainer.left,
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  #tabs-subcontainer.right {
-  box-shadow: none;
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off #tabs-subcontainer.left,
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off #tabs-subcontainer.right {
+    box-shadow: none;
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off
-  #tabs-subcontainer,
-#browser:not(.tabs-top):not(.tabs-bottom).transparent-tabbar
-  #tabs-subcontainer {
-  background-color: transparent;
+#browser:not(.tabs-top):not(.tabs-bottom).color-behind-tabs-off #tabs-subcontainer,
+#browser:not(.tabs-top):not(.tabs-bottom).transparent-tabbar #tabs-subcontainer {
+    background-color: transparent;
 }
 
 /*panel*/
 #browser:not(.tabs-top):not(.tabs-bottom) #panels #switch,
 #browser:not(.tabs-top):not(.tabs-bottom) #panels,
 #browser:not(.tabs-top):not(.tabs-bottom) #panels-container {
-  padding-top: 0px;
-  border: 0;
+    padding-top: 0px;
+    border: 0;
 }
 
-.icons #switch .addwebpanel-wrapper > button,
-.icons #switch > .button-toolbar,
-.icons #switch > * > .button-toolbar,
-.icons #switch > button {
-  border-radius: calc(var(--radiusHalf));
+.icons #switch .addwebpanel-wrapper>button,
+.icons #switch>.button-toolbar,
+.icons #switch>*>.button-toolbar,
+.icons #switch>button {
+    border-radius: calc(var(--radiusHalf));
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom)
-  .icons
-  #switch
-  .addwebpanel-wrapper
-  > button:not(.toolbar-spacer, .toolbar-spacer-flexible, .divider):hover,
-#browser:not(.tabs-top):not(.tabs-bottom)
-  .icons
-  #switch
-  > .button-toolbar:not(
-    .toolbar-spacer,
+#browser:not(.tabs-top):not(.tabs-bottom) .icons #switch .addwebpanel-wrapper>button:not(.toolbar-spacer, .toolbar-spacer-flexible, .divider):hover,
+#browser:not(.tabs-top):not(.tabs-bottom) .icons #switch>.button-toolbar:not(.toolbar-spacer,
     .toolbar-spacer-flexible,
-    .divider
-  ):hover,
-#browser:not(.tabs-top):not(.tabs-bottom)
-  .icons
-  #switch
-  > *
-  .button-toolbar:not(
-    .toolbar-spacer,
+    .divider):hover,
+#browser:not(.tabs-top):not(.tabs-bottom) .icons #switch>* .button-toolbar:not(.toolbar-spacer,
     .toolbar-spacer-flexible,
-    .divider
-  ):hover,
-#browser:not(.tabs-top):not(.tabs-bottom)
-  .icons
-  #switch
-  > button:not(.toolbar-spacer, .toolbar-spacer-flexible, .divider):hover {
-  background: var(--colorFgAlpha);
+    .divider):hover,
+#browser:not(.tabs-top):not(.tabs-bottom) .icons #switch>button:not(.toolbar-spacer, .toolbar-spacer-flexible, .divider):hover {
+    background: var(--colorFgAlpha);
 }
 
 #browser:not(.tabs-top):not(.tabs-bottom) #panels-container {
-  margin-bottom: var(--window-border);
-  background: var(--colorToviTransparent);
+    margin-bottom: var(--window-border);
+    background: var(--colorToviTransparent);
 }
 
 #browser:not(.tabs-top):not(.tabs-bottom) #panels-container.overlay {
-  background: var(--colorBgAlphaBlur);
+    background: var(--colorBgAlphaBlur);
 }
 
 #browser:not(.tabs-top):not(.tabs-bottom) #panels-container.icons {
-  background: var(--colorToviTransparent);
+    background: var(--colorToviTransparent);
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom)
-  #panels-container:not(.icons)
-  .panel-group {
-  background: var(--colorBgAlphaBlur);
+#browser:not(.tabs-top):not(.tabs-bottom) #panels-container:not(.icons) .panel-group {
+    background: var(--colorBgAlphaBlur);
 }
 
 #browser:not(.tabs-top):not(.tabs-bottom) #panels-container .panel-group {
-  border-radius: var(--radiusCap);
+    border-radius: var(--radiusCap);
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom)
-  #panels-container.overlay
-  .panel-group {
-  border-radius: 0;
+#browser:not(.tabs-top):not(.tabs-bottom) #panels-container.overlay .panel-group {
+    border-radius: 0;
 }
 
 /*webview-container*/
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off
-  #webview-container {
-  margin: 0px var(--window-border) var(--window-border) var(--window-border);
-}
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-left
-  #webview-container {
-  margin: 0px var(--window-border) var(--window-border) 0px;
-}
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-right
-  #webview-container {
-  margin: 0px 0px var(--window-border) var(--window-border);
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off #webview-container {
+    margin: 0px var(--window-border) var(--window-border) var(--window-border);
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off
-  #main.left
-  #panels-container.icons
-  ~ #webview-container,
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-right
-  #main.left
-  #panels-container.icons
-  ~ #webview-container,
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off
-  #main.left
-  #panels-container.minimized.overlay
-  ~ #webview-container,
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-right
-  #main.left
-  #panels-container.minimized.overlay
-  ~ #webview-container {
-  margin-left: 0px;
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-left #webview-container {
+    margin: 0px var(--window-border) var(--window-border) 0px;
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-left
-  #main.right
-  #panels-container.icons
-  ~ #webview-container,
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off
-  #main.right
-  #panels-container.icons
-  ~ #webview-container,
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-left
-  #main.right
-  #panels-container.minimized.overlay
-  ~ #webview-container,
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off
-  #main.right
-  #panels-container.minimized.overlay
-  ~ #webview-container {
-  margin-right: 0px;
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-right #webview-container {
+    margin: 0px 0px var(--window-border) var(--window-border);
+}
+
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off #main.left #panels-container.icons~#webview-container,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-right #main.left #panels-container.icons~#webview-container,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off #main.left #panels-container.minimized.overlay~#webview-container,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-right #main.left #panels-container.minimized.overlay~#webview-container {
+    margin-left: 0px;
+}
+
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-left #main.right #panels-container.icons~#webview-container,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off #main.right #panels-container.icons~#webview-container,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-left #main.right #panels-container.minimized.overlay~#webview-container,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).tabs-off #main.right #panels-container.minimized.overlay~#webview-container {
+    margin-right: 0px;
 }
 
 /*rounded webview*/
 #main,
-#main > .inner {
-  overflow: visible;
+#main>.inner {
+    overflow: visible;
 }
 
 #browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) #webpage-stack {
-  border-radius: 18px;
+    border-radius: 18px;
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).theme-light
-  #webpage-stack {
-  box-shadow: var(--webview-shadow-light);
-}
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).theme-dark
-  #webpage-stack {
-  box-shadow: var(--webview-shadow-dark);
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).theme-light #webpage-stack {
+    box-shadow: var(--webview-shadow-light);
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen)
-  #webpage-stack:has(.tiled .visible),
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen)
-  #webpage-stack:has(.mosaic .visible) {
-  box-shadow: none;
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen).theme-dark #webpage-stack {
+    box-shadow: var(--webview-shadow-dark);
+}
+
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) #webpage-stack:has(.tiled .visible),
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) #webpage-stack:has(.mosaic .visible) {
+    box-shadow: none;
 }
 
 /*tile*/
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen)
-  #webview-container:has(#webpage-stack .tiled .visible),
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen)
-  #webview-container:has(#webpage-stack .mosaic .visible) {
-  box-shadow: none;
-  padding: 0px;
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) #webview-container:has(#webpage-stack .tiled .visible),
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) #webview-container:has(#webpage-stack .mosaic .visible) {
+    box-shadow: none;
+    padding: 0px;
 }
 
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen)
-  .mosaic-split
-  .mosaic-split-line,
-#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen)
-  .mosaic-split
-  .mosaic-split-line:before,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) .mosaic-split .mosaic-split-line,
+#browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) .mosaic-split .mosaic-split-line:before,
 .mosaic-split .mosaic-split-line:after,
 #browser:not(.tabs-top):not(.tabs-bottom):not(.fullscreen) .tile,
 #browser:not(.inner, .narrow-tiling) .tiled.visible .tile[data-id] {
-  background: transparent;
-  box-shadow: none;
+    background: transparent;
+    box-shadow: none;
 }
 
 /* Transparent Start Page Navigation*/
 .startpage .startpage-navigation {
-  box-shadow: none !important;
-  background: transparent !important;
+    box-shadow: none !important;
+    background: transparent !important;
 }
 
 .startpage .startpage-navigation .startpage-navigation-group {
-  border: 0 !important;
+    border: 0 !important;
 }
 
 /* Transparent Start Page Navigation Buttons */
 button.button-startpage {
-  box-shadow: none !important;
+    box-shadow: none !important;
 }
+
 button.button-startpage:after {
-  background-image: none !important;
+    background-image: none !important;
 }
+
 button.button-startpage:active {
-  background: none !important;
+    background: none !important;
 }
 
-#tabs-tabbar-container > .separator {
-  display: none !important;
-}
-
-/* Increase the size of tab bar buttons */
-html {
-  --tab-size-multiplier: 1.5;
-}
-
-#tabs-tabbar-container .tab-strip .tab-position {
-  height: calc(var(--Height) * var(--tab-size-multiplier));
-  transform: translateX(var(--PositionX))
-    translateY(calc(var(--PositionY) * var(--tab-size-multiplier)));
-  align-items: center;
-}
-
-#tabs-tabbar-container .tab-strip .tab-position .tab {
-  height: calc(var(--Height) * (var(--tab-size-multiplier) - 0.2));
-  max-height: calc(var(--Height) * (var(--tab-size-multiplier) - 0.2));
-  justify-content: center;
-  font-size: 14px;
-  padding: 0.5em 0;
-}
-
-#tabs-tabbar-container .tab-strip .tab-position .tab .title {
-  padding-left: 8px;
-  margin-right: 0.5em;
-}
-
-#tabs-tabbar-container .tab-strip .tab-position .tab .svg-tab-stack {
-  height: calc(var(--Height) * (var(--tab-size-multiplier) - 0.2));
-}
-
-#tabs-tabbar-container .tab-strip .tab-position .tab .tab-header {
-  flex: 0 0 calc(30px * (var(--tab-size-multiplier) - 0.2));
-}
-
-#tabs-tabbar-container .tab-strip .tab-position .tab .tab-header progress {
-  bottom: 0px;
-  left: 3px;
-  --progress-width: calc(var(--Width) - 10px);
-}
-
-#tabs-tabbar-container .tab-strip .separator {
-  height: calc(var(--Height) * var(--tab-size-multiplier));
-  transform: translateX(var(--PositionX))
-    translateY(calc(var(--PositionY) * var(--tab-size-multiplier)));
-  align-items: center;
-}
-
-#tabs-tabbar-container .tab-strip .button-toolbar.newtab {
-  top: calc(var(--PositionY) * var(--tab-size-multiplier)) !important;
-  height: calc(var(--Height) * var(--tab-size-multiplier));
+#tabs-tabbar-container>.separator {
+    display: none !important;
 }
