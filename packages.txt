@@ -179,7 +179,6 @@ iptables
 iputils
 iso-codes
 iwd
-jack2
 jansson
 jbigkit
 jq
@@ -530,9 +529,12 @@ perl-mailtools
 perl-timedate
 pinentry
 pipewire
+pipewire-jack
+pipewire-pulse
 pixman
 pkgconf
 plasma-activities
+playerctl
 polkit
 polkit-kde-agent
 polkit-qt6
@@ -544,7 +546,6 @@ portaudio
 procps-ng
 psmisc
 pugixml
-pulseaudio
 python
 python-autocommand
 python-cairo
